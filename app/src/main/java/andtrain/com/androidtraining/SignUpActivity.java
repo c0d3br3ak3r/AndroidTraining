@@ -30,7 +30,10 @@ public class SignUpActivity extends Activity {
                         dbadapter.open();
                         String username = ((EditText)findViewById(R.id.editText7)).getText().toString();
                         String password = ((EditText)findViewById(R.id.editText6)).getText().toString();
-                        dbadapter.insertEntry(username,password);
+                        String name = ((EditText)findViewById(R.id.editText3)).getText().toString();
+                        String email = ((EditText)findViewById(R.id.editText4)).getText().toString();
+                        String phno = ((EditText)findViewById(R.id.editText5)).getText().toString();
+                        dbadapter.insertEntry(username,password,name,email,phno);
                         dbadapter.close();
                         startActivity(intent);
                     }

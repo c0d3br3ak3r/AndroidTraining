@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import java.util.HashMap;
+
 public class SignInActivity extends Activity {
     public static Switch swt;
     public static Button login_btn;
@@ -40,9 +42,16 @@ public class SignInActivity extends Activity {
                         Intent intent = new Intent("andtrain.com.androidtraining.ResultActivity");
                         intent.putExtra("FromPage", "SignInPage");
                         dbadapter.open();
-                        String pass = dbadapter.getLoginCredentials(((EditText)findViewById(R.id.editText)).getText().toString());
+                        HashMap<String,String> hmap= dbadapter.getLoginCredentials(((EditText)findViewById(R.id.editText)).getText().toString(), ((EditText)findViewById(R.id.editText2)).getText().toString());
                         dbadapter.close();
-                        intent.putExtra("Password",pass);
+                        if(hmap!=null) {
+                            intent.putExtra("valid","true");
+                            intent.putExtra("Name", hmap.get("name"));
+                            intent.putExtra("Email", hmap.get("email"));
+                            intent.putExtra("phno", hmap.get("phno"));
+                        } else {
+                            intent.putExtra("valid","false");
+                        }
                         startActivity(intent);
                     }
                 }

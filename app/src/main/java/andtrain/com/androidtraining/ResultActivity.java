@@ -26,16 +26,29 @@ public class ResultActivity extends Activity {
         if(frompage.equals("SignUpPage")) {
             resString = "Hello ! Successfully created an account. You can go back and now login to your account";
         } else if (frompage.equals("SignInPage")) {
-            resString = "Hello ! Welcome to Android Training App.. ";
-            resString += fromIntent.getStringExtra("Password");
+            if("true".equals((fromIntent.getStringExtra("valid")))) {
+                resString = "Welcome !! Your details are :";
+            } else {
+                resString = "Your Credentials are invalid. Please try again.";
+            }
         }
-        TextView txview = new TextView(this);
-        //txview.setTextSize(40);
-        txview.setText(resString);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.resactivity);
-        //LinearLayout layout = (LinearLayout) View.inflate(this,R.layout.activity_result, null);
-        //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        //layout.setLayoutParams(params);
+        TextView txview = new TextView(this);
+        txview.setText(resString);
         layout.addView(txview);
+        if("true".equals((fromIntent.getStringExtra("valid")))) {
+            String name = fromIntent.getStringExtra("name");
+            String email = fromIntent.getStringExtra("email");
+            String phno = fromIntent.getStringExtra("phno");
+            TextView name_widget = new TextView(this);
+            name_widget.setText(name);
+            layout.addView(name_widget);
+            TextView email_widget = new TextView(this);
+            email_widget.setText(email);
+            layout.addView(email_widget);
+            TextView phno_widget = new TextView(this);
+            phno_widget.setText(phno);
+            layout.addView(phno_widget);
+        }
     }
 }
