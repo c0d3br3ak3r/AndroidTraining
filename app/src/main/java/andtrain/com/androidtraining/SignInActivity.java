@@ -42,7 +42,7 @@ public class SignInActivity extends Activity {
                         Intent intent = new Intent("andtrain.com.androidtraining.ResultActivity");
                         intent.putExtra("FromPage", "SignInPage");
                         dbadapter.open();
-                        HashMap<String,String> hmap= dbadapter.getLoginCredentials(((EditText)findViewById(R.id.editText)).getText().toString(), ((EditText)findViewById(R.id.editText2)).getText().toString());
+                        HashMap<String,String> hmap = dbadapter.getLoginCredentials(((EditText)findViewById(R.id.editText)).getText().toString(), ((EditText)findViewById(R.id.editText2)).getText().toString());
                         dbadapter.close();
                         if(hmap!=null) {
                             intent.putExtra("valid","true");

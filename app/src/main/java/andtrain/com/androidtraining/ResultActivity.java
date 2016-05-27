@@ -33,22 +33,32 @@ public class ResultActivity extends Activity {
             }
         }
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.resactivity);
+        LinearLayout innerLayout = new LinearLayout(this);            //create a new layout and add that layout to relative layout ?
+        innerLayout.setOrientation(LinearLayout.VERTICAL);
+        //innerLayout.setMinimumWidth(50); //optional ?
+        //innerLayout.setMinimumHeight(50); //optional ?
+
         TextView txview = new TextView(this);
         txview.setText(resString);
-        layout.addView(txview);
+        innerLayout.addView(txview);
         if("true".equals((fromIntent.getStringExtra("valid")))) {
-            String name = fromIntent.getStringExtra("name");
-            String email = fromIntent.getStringExtra("email");
+
+            String name = fromIntent.getStringExtra("Name");
+            String email = fromIntent.getStringExtra("Email");
             String phno = fromIntent.getStringExtra("phno");
             TextView name_widget = new TextView(this);
             name_widget.setText(name);
-            layout.addView(name_widget);
+            innerLayout.addView(name_widget);
             TextView email_widget = new TextView(this);
             email_widget.setText(email);
-            layout.addView(email_widget);
+            innerLayout.addView(email_widget);
             TextView phno_widget = new TextView(this);
             phno_widget.setText(phno);
-            layout.addView(phno_widget);
+            innerLayout.addView(phno_widget);
+
+
         }
+
+        layout.addView(innerLayout);
     }
 }
